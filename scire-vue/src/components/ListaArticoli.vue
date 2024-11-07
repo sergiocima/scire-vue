@@ -1,36 +1,20 @@
 <template>
   <div>
     <h1>Articoli Scire</h1>
-
-    <!-- Pulsante Home per tornare alla lista degli articoli -->
-    <button v-if="articoloSelezionato" @click="articoloSelezionato = null" class="home-button">
-      Torna alla Home
-    </button>
-
-    <div v-if="articoli && !articoloSelezionato" class="masonry-grid">
-      <!-- Clicca sull'articolo per caricare i dettagli -->
-      <div v-for="(articolo, index) in articoli" 
-           :key="index" 
-           @click="caricaDettagli(articolo.Nid)" 
-           class="articolo">
+    <div v-if="articoli" class="masonry-grid">
+      <a v-for="(articolo, index) in articoli" 
+         :key="index" 
+         :href="articolo.Nid" 
+         target="_blank" 
+         class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
         <p v-if="articolo['di ']" class="autore">di {{ articolo['di '] }}</p>
         <p class="data">{{ articolo.created }}</p>
-      </div>
+      </a>
     </div>
-    
-    <div v-else-if="!articoloSelezionato">
+    <div v-else>
       <p>Caricamento in corso...</p>
-    </div>
-
-    <!-- Dettagli dell'articolo selezionato -->
-    <div v-if="articoloSelezionato" class="dettagli-articolo">
-      <h2>{{ articoloSelezionato.title }}</h2>
-      <img :src="articoloSelezionato.field_anteprima_grande.src" :alt="articoloSelezionato.field_anteprima_grande.alt">
-      <p class="autore">di {{ articoloSelezionato['di '] }}</p>
-      <p class="data">{{ articoloSelezionato.created }}</p>
-      <!-- Aggiungi altri dettagli o contenuti qui -->
     </div>
   </div>
 </template>
@@ -40,8 +24,7 @@ export default {
   name: 'ListaArticoli',
   data() {
     return {
-      articoli: null,
-      articoloSelezionato: null // Stato per l'articolo selezionato
+      articoli: null
     };
   },
   async created() {
@@ -54,16 +37,6 @@ export default {
       }));
     } catch (error) {
       console.error("Errore nel recupero dei dati JSON:", error);
-    }
-  },
-  methods: {
-    async caricaDettagli(url) {
-      try {
-        const response = await fetch(url);
-        this.articoloSelezionato = await response.json();
-      } catch (error) {
-        console.error("Errore nel caricamento dei dettagli JSON:", error);
-      }
     }
   }
 };
@@ -78,7 +51,6 @@ export default {
   margin: 0 auto;
   padding: 20px;
   max-width: 1200px;
-  cursor: pointer;
 }
 
 .articolo {
@@ -88,52 +60,38 @@ export default {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .articolo:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombra solo al passaggio del mouse */
 }
 
-/* Stili per il pulsante Home */
-.home-button {
-  background-color: #007acc;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  transition: background-color 0.3s ease;
-}
-
-.home-button:hover {
-  background-color: #005f99;
-}
-
-.dettagli-articolo {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 12px;
-  background-color: #e0f7fa;
-}
-
-.dettagli-articolo img {
+.articolo img {
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
-.dettagli-articolo h2 {
-  font-size: 1.4rem;
+.articolo h2 {
+  font-size: 1.2rem;
   color: #333;
+  margin: 10px 15px 5px;
 }
 
-.dettagli-articolo p.autore {
+.articolo p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 15px;
+}
+
+.articolo p.autore {
   color: #007acc;
 }
 
-.dettagli-articolo p.data {
+.articolo p.data {
   color: #ff6347;
   font-size: 0.8rem;
 }
