@@ -5,8 +5,8 @@
       <div v-for="(articolo, index) in articoli" :key="index" class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
-        <!-- Verifica la presenza del campo "di" per visualizzare l'autore -->
-        <p v-if="articolo.di" class="autore">Autore: {{ articolo.di }}</p>
+        <!-- Usa "articolo['di ']" per accedere alla chiave con spazio -->
+        <p v-if="articolo['di ']" class="autore">Autore: {{ articolo['di '] }}</p>
         <p class="data">Data: {{ articolo.created }}</p>
       </div>
     </div>
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-/* CSS aggiornato con le modifiche precedenti */
+/* CSS aggiornato per la griglia */
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
