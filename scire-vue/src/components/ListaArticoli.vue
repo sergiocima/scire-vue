@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Articoli</h1>
+    <h1>Articoli Scire</h1>
     <div v-if="articoli" class="masonry-grid">
       <div v-for="(articolo, index) in articoli" :key="index" class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
