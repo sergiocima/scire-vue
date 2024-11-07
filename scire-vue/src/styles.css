@@ -48,7 +48,7 @@
   }
   
   .articolo h2 {
-    font-size: 1.4rem; /* Aumenta la dimensione del titolo */
+    font-size: 2rem; /* Aumenta la dimensione del titolo */
     color: #333;
     margin: 0 0 10px; /* Aggiunge un po' di spazio sotto al titolo */
   }
@@ -62,12 +62,12 @@
   
   /* Colori vivaci per autore e data */
   .articolo p.autore {
-    font-size: 1rem; /* Stessa dimensione dei paragrafi, ma colore diverso */
+    font-size: 1.4rem; /* Stessa dimensione dei paragrafi, ma colore diverso */
     color: #0056ff; /* Blu elettrico */
   }
   
   .articolo p.data {
-    font-size: 0.9rem; /* Mantieni la data leggermente più piccola */
+    font-size: 1.4rem; /* Mantieni la data leggermente più piccola */
     color: #ff4500; /* Arancione elettrico */
   }
   
