@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Articoli</h1>
+    <h1>Articoli Scire</h1>
     <div v-if="articoli" class="masonry-grid">
       <a v-for="(articolo, index) in articoli" 
          :key="index" 
@@ -42,22 +42,27 @@ export default {
 </script>
 
 <style scoped>
-/* Rendere l'intero riquadro un link */
+/* Griglia responsiva e compatta */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 250px di larghezza minima per colonna */
+  gap: 20px;
+}
+
 .articolo-link {
-  display: flex;
+  display: block;
   text-decoration: none;
   color: inherit;
-  flex-direction: column;
-  transition: transform 0.2s ease-in-out;
 }
 
 .articolo {
-  padding: 10px;
+  padding: 15px;
   border-radius: 8px;
   background: #f5f5f5;
+  transition: box-shadow 0.2s ease-in-out;
 }
 
 .articolo-link:hover .articolo {
-  transform: scale(1.02); /* Leggero effetto zoom */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombra al passaggio del mouse */
 }
 </style>
