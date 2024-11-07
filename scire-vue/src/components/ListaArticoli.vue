@@ -25,7 +25,7 @@ export default {
   },
   async created() {
     try {
-      const response = await fetch('https://www.scienzainrete.it/json');
+      const response = await fetch('/api/getJson');
       const json = await response.json();
       this.articoli = json.nodes.map(node => node.node);
     } catch (error) {
