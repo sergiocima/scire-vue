@@ -16,6 +16,12 @@
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
+  /* Applica la font-family a tutto il componente */
+* {
+    font-family: "Obviously Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+  
   
   .articolo:hover {
     transform: translateY(-5px);
