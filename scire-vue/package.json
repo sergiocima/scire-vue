@@ -3,17 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vue-cli-service serve",       // Avvia il server di sviluppo
+    "build": "vue-cli-service build",       // Esegue la build di produzione
+    "lint": "vue-cli-service lint"          // Linting
   },
   "dependencies": {
     "core-js": "^3.8.3",
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "@vue/cli-service": "^4.5.0",
-    "webpack": "^4.46.0" // o la versione webpack necessaria per Vue CLI
+    "@vue/cli-service": "^4.5.0"
   },
   "engines": {
     "node": ">=14 <17",
