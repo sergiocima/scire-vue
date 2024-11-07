@@ -5,7 +5,7 @@
       <router-link
         v-for="(articolo, index) in articoli"
         :key="index"
-        :to="`/articolo/${articolo.id}`"
+        :to="`/articolo/${articolo.Nid}`"
         class="articolo"
       >
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
