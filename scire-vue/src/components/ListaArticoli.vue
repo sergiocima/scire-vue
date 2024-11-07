@@ -2,11 +2,13 @@
   <div>
     <h1>Articoli Scire</h1>
     <div v-if="articoli" class="masonry-grid">
-      <!-- Usa Vue Router per navigare alla pagina dei dettagli -->
-      <router-link v-for="(articolo, index) in articoli" 
-                   :key="index" 
-                   :to="`/articolo/${articolo.id}`" 
-                   class="articolo">
+      <!-- Usa <router-link> per navigare alla pagina dei dettagli -->
+      <router-link
+        v-for="(articolo, index) in articoli"
+        :key="index"
+        :to="`/articolo/${articolo.id}`"
+        class="articolo"
+      >
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
         <p v-if="articolo['di ']" class="autore">di {{ articolo['di '] }}</p>
@@ -18,6 +20,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
