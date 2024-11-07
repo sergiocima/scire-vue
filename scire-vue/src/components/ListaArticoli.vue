@@ -6,7 +6,7 @@
       <router-link
         v-for="(articolo, index) in articoli"
         :key="index"
-        :to="`/articolo/${articolo.id}`"
+        :to="`/articolo/${articolo.id}`"  <!-- Usa l'ID dell'articolo qui -->
         class="articolo"
       >
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
@@ -21,7 +21,6 @@
   </div>
 </template>
 
-
 <script>
 export default {
   name: 'ListaArticoli',
@@ -35,8 +34,11 @@ export default {
       const response = await fetch('/api/getJson');
       const data = await response.json();
       this.articoli = data.nodes.map(node => ({
-        ...node.node,
-        id: node.node.id // Assicurati che l'ID sia presente
+        id: node.node.Nid || node.node.id,  // Assicurati che l'ID sia assegnato correttamente
+        title: node.node.title,
+        field_anteprima_grande: node.node.field_anteprima_grande,
+        created: node.node.created,
+        'di ': node.node['di ']
       }));
     } catch (error) {
       console.error("Errore nel recupero dei dati JSON:", error);
@@ -45,8 +47,9 @@ export default {
 };
 </script>
 
+
 <style scoped>
-/* Stile per la griglia */
+/* CSS aggiornato per la griglia */
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -68,6 +71,34 @@ export default {
 
 .articolo:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombra solo al passaggio del mouse */
+}
+
+.articolo img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.articolo h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 15px 5px;
+}
+
+.articolo p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 15px;
+}
+
+.articolo p.autore {
+  color: #007acc;
+}
+
+.articolo p.data {
+  color: #ff6347;
+  font-size: 0.8rem;
 }
 </style>
