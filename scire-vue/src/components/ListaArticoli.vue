@@ -23,14 +23,13 @@ export default {
       articoli: null
     };
   },
- async created() {
+async created() {
   try {
     const response = await fetch('/api/getJson');
-    if (!response.ok) {
-      throw new Error(`Errore nella risposta: ${response.status}`);
-    }
-    const json = await response.json();
-    this.articoli = json.nodes.map(node => node.node);
+    console.log("Stato risposta:", response.status);  // Logga lo status
+    const data = await response.json();
+    console.log("Dati ricevuti:", data);  // Logga i dati ricevuti
+    this.articoli = data.nodes.map(node => node.node);
   } catch (error) {
     console.error("Errore nel recupero dei dati JSON:", error);
   }
