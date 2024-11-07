@@ -6,7 +6,7 @@
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
         <!-- Usa "articolo['di ']" per accedere alla chiave con spazio -->
-        <p v-if="articolo['di ']" class="autore">di: {{ articolo['di '] }}</p>
+        <p v-if="articolo['di ']" class="autore">di {{ articolo['di '] }}</p>
         <p class="data">{{ articolo.created }}</p>
       </div>
     </div>
