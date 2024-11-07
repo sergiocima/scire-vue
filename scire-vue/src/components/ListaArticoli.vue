@@ -6,7 +6,7 @@
       <router-link
         v-for="(articolo, index) in articoli"
         :key="index"
-        :to="`/articolo/${articolo.id}`" <!-- Definisce la route con l'ID dell'articolo -->
+        :to="`/articolo/${articolo.id}`"  <!-- Passa l'ID dell'articolo nella route dinamica -->
         class="articolo"
       >
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
@@ -20,7 +20,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
