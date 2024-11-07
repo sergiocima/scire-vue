@@ -23,15 +23,18 @@ export default {
       articoli: null
     };
   },
-  async created() {
-    try {
-      const response = await fetch('/api/getJson');
-      const json = await response.json();
-      this.articoli = json.nodes.map(node => node.node);
-    } catch (error) {
-      console.error("Errore nel recupero dei dati JSON:", error);
+ async created() {
+  try {
+    const response = await fetch('/api/getJson');
+    if (!response.ok) {
+      throw new Error(`Errore nella risposta: ${response.status}`);
     }
+    const json = await response.json();
+    this.articoli = json.nodes.map(node => node.node);
+  } catch (error) {
+    console.error("Errore nel recupero dei dati JSON:", error);
   }
+}
 };
 </script>
 
