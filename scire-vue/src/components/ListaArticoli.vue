@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1>Articoli</h1>
-    <div v-if="articoli">
+    <div v-if="articoli" class="masonry-grid">
       <div v-for="(articolo, index) in articoli" :key="index" class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
-        <p>Autore: {{ articolo.di }}</p>
-        <p>Data: {{ articolo.created }}</p>
+        <p class="autore">Autore: {{ articolo.di }}</p>
+        <p class="data">Data: {{ articolo.created }}</p>
       </div>
     </div>
     <div v-else>
@@ -17,31 +17,78 @@
 
 <script>
 export default {
-  name: 'ListaArticoli',  // Cambia il nome del componente qui
+  name: 'ListaArticoli',
   data() {
     return {
       articoli: null
     };
   },
-async created() {
-  try {
-    const response = await fetch('/api/getJson');
-    console.log("Stato risposta:", response.status);  // Logga lo status
-    const data = await response.json();
-    console.log("Dati ricevuti:", data);  // Logga i dati ricevuti
-    this.articoli = data.nodes.map(node => node.node);
-  } catch (error) {
-    console.error("Errore nel recupero dei dati JSON:", error);
+  async created() {
+    try {
+      const response = await fetch('/api/getJson');
+      console.log("Stato risposta:", response.status); // Logga lo status
+      const data = await response.json();
+      console.log("Dati ricevuti:", data); // Logga i dati ricevuti
+      this.articoli = data.nodes.map(node => node.node);
+    } catch (error) {
+      console.error("Errore nel recupero dei dati JSON:", error);
+    }
   }
-}
 };
 </script>
 
 <style scoped>
-.articolo {
-  margin-bottom: 20px;
+/* Contenitore della griglia */
+.masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tre colonne affiancate */
+  gap: 20px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 1200px;
 }
-img {
-  max-width: 100%;
+
+/* Stile per ogni articolo */
+.articolo {
+  background-color: #f5f5f5;
+  border-radius: 12px; /* Angoli arrotondati */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.articolo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Immagine dell'articolo */
+.articolo img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Contenuto dell'articolo */
+.articolo h2 {
+  font-size: 1.2rem;
+  color: #333;
+  margin: 10px 15px 5px;
+}
+
+.articolo p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 5px 15px;
+}
+
+.articolo p.autore {
+  color: #007acc; /* Colore per l'autore */
+}
+
+.articolo p.data {
+  color: #ff6347; /* Colore per la data */
+  font-size: 0.8rem;
 }
 </style>
