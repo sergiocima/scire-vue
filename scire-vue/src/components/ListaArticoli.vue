@@ -2,18 +2,16 @@
   <div>
     <h1>Articoli Scire</h1>
     <div v-if="articoli" class="masonry-grid">
-      <!-- Usa <router-link> invece di <a> per gestire la navigazione -->
-      <router-link
-        v-for="(articolo, index) in articoli"
-        :key="index"
-        :to="`/articolo/${articolo.id}`"  <!-- Passa l'ID dell'articolo nella route dinamica -->
-        class="articolo"
-      >
+      <a v-for="(articolo, index) in articoli" 
+         :key="index" 
+         :href="articolo.Nid" 
+         target="_blank" 
+         class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
         <p v-if="articolo['di ']" class="autore">di {{ articolo['di '] }}</p>
         <p class="data">{{ articolo.created }}</p>
-      </router-link>
+      </a>
     </div>
     <div v-else>
       <p>Caricamento in corso...</p>
