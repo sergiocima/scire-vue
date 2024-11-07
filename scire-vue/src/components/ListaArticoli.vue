@@ -42,20 +42,22 @@ export default {
 </script>
 
 <style scoped>
-/* Stili per rendere l'intero riquadro cliccabile */
+/* Rendere l'intero riquadro un link */
 .articolo-link {
-  display: block;
+  display: flex;
   text-decoration: none;
   color: inherit;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
 }
 
 .articolo {
   padding: 10px;
   border-radius: 8px;
-  transition: transform 0.2s;
+  background: #f5f5f5;
 }
 
-.articolo:hover {
-  transform: scale(1.02);
+.articolo-link:hover .articolo {
+  transform: scale(1.02); /* Leggero effetto zoom */
 }
 </style>
