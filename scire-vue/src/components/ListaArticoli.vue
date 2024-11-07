@@ -5,7 +5,8 @@
       <div v-for="(articolo, index) in articoli" :key="index" class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
-        <p class="autore">Autore: {{ articolo.di }}</p>
+        <!-- Verifica la presenza del campo "di" per visualizzare l'autore -->
+        <p v-if="articolo.di" class="autore">Autore: {{ articolo.di }}</p>
         <p class="data">Data: {{ articolo.created }}</p>
       </div>
     </div>
@@ -38,21 +39,20 @@ export default {
 </script>
 
 <style scoped>
-/* Contenitore della griglia */
+/* CSS aggiornato con le modifiche precedenti */
 .masonry-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tre colonne affiancate */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin: 0 auto;
   padding: 20px;
   max-width: 1200px;
 }
 
-/* Stile per ogni articolo */
 .articolo {
   background-color: #f5f5f5;
-  border-radius: 12px; /* Angoli arrotondati */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -62,7 +62,6 @@ export default {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Immagine dell'articolo */
 .articolo img {
   width: 100%;
   height: auto;
@@ -70,7 +69,6 @@ export default {
   border-top-right-radius: 12px;
 }
 
-/* Contenuto dell'articolo */
 .articolo h2 {
   font-size: 1.2rem;
   color: #333;
@@ -84,11 +82,11 @@ export default {
 }
 
 .articolo p.autore {
-  color: #007acc; /* Colore per l'autore */
+  color: #007acc;
 }
 
 .articolo p.data {
-  color: #ff6347; /* Colore per la data */
+  color: #ff6347;
   font-size: 0.8rem;
 }
 </style>
