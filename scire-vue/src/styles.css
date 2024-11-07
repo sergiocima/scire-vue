@@ -35,25 +35,25 @@
 
 /* Stile del titolo dell'articolo */
 .articolo h2 {
-  font-size: 4rem;
+  font-size: 2rem;
   color: #333;
   margin: 10px 15px 5px;
 }
 
 /* Stile dei paragrafi generici */
 .articolo p {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: #666;
   margin: 5px 15px;
 }
 
 /* Colori e dimensione specifica per autore e data */
 .articolo p.autore {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: #007acc;
 }
 
 .articolo p.data {
-  font-size: 2rem;
+  font-size: 1.4rem;
   color: #ff6347;
 }
