@@ -1,10 +1,9 @@
 <template>
   <div v-if="articolo">
     <h1>{{ articolo.title }}</h1>
-    <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt" />
-    <p class="autore">di {{ articolo['di '] }}</p>
-    <p class="data">{{ articolo.created }}</p>
-    <p>{{ articolo.content }}</p> <!-- Aggiungi altri dettagli -->
+    <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
+    <p>di {{ articolo['di '] }}</p>
+    <p>{{ articolo.created }}</p>
   </div>
   <div v-else>
     <p>Caricamento in corso...</p>
@@ -13,7 +12,7 @@
 
 <script>
 export default {
-  props: ['id'],
+  props: ['Nid'],
   data() {
     return {
       articolo: null
@@ -21,7 +20,7 @@ export default {
   },
   async created() {
     try {
-      const response = await fetch(`/api/nodo-dettagli/${this.id}?_format=json`);
+      const response = await fetch(`${this.Nid}?_format=json`);
       this.articolo = await response.json();
     } catch (error) {
       console.error("Errore nel caricamento dei dati JSON:", error);
