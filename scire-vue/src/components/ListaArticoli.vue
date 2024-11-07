@@ -2,18 +2,13 @@
   <div>
     <h1>Articoli Scire</h1>
     <div v-if="articoli" class="masonry-grid">
-      <!-- Usa <router-link> per navigare alla pagina dei dettagli -->
-      <router-link
-        v-for="(articolo, index) in articoli"
-        :key="index"
-        :to="`/articolo/${articolo.id}`"  <!-- Usa l'ID dell'articolo qui -->
-        class="articolo"
-      >
+      <div v-for="(articolo, index) in articoli" :key="index" class="articolo">
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
+        <!-- Usa "articolo['di ']" per accedere alla chiave con spazio -->
         <p v-if="articolo['di ']" class="autore">di {{ articolo['di '] }}</p>
         <p class="data">{{ articolo.created }}</p>
-      </router-link>
+      </div>
     </div>
     <div v-else>
       <p>Caricamento in corso...</p>
@@ -32,21 +27,16 @@ export default {
   async created() {
     try {
       const response = await fetch('/api/getJson');
+      console.log("Stato risposta:", response.status); // Logga lo status
       const data = await response.json();
-      this.articoli = data.nodes.map(node => ({
-        id: node.node.Nid || node.node.id,  // Assicurati che l'ID sia assegnato correttamente
-        title: node.node.title,
-        field_anteprima_grande: node.node.field_anteprima_grande,
-        created: node.node.created,
-        'di ': node.node['di ']
-      }));
+      console.log("Dati ricevuti:", data); // Logga i dati ricevuti
+      this.articoli = data.nodes.map(node => node.node);
     } catch (error) {
       console.error("Errore nel recupero dei dati JSON:", error);
     }
   }
 };
 </script>
-
 
 <style scoped>
 /* CSS aggiornato per la griglia */
@@ -62,16 +52,14 @@ export default {
 .articolo {
   background-color: #f5f5f5;
   border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-  display: block;
 }
 
 .articolo:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombra solo al passaggio del mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .articolo img {
