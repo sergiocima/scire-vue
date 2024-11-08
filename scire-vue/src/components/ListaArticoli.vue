@@ -5,7 +5,7 @@
       <a
         v-for="(articolo, index) in articoli"
         :key="index"
-        :href="articolo.Nid" 
+        :href="articolo.url"
         target="_blank"
         class="articolo"
       >
@@ -34,9 +34,10 @@ export default {
     try {
       const response = await fetch('/api/getJson');
       const data = await response.json();
+      // Mappatura dei dati mantenendo il campo "di "
       this.articoli = data.nodes.map(node => ({
         ...node.node,
-        Nid: node.node.Nid
+        url: node.node.url
       }));
     } catch (error) {
       console.error("Errore nel recupero dei dati JSON:", error);
