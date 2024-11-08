@@ -20,6 +20,7 @@ export default {
   async created() {
     try {
       const Nid = this.$route.params.Nid;
+      console.log("Caricamento articolo con ID:", Nid); // Debug
       const response = await fetch(`https://www.scienzainrete.it/node/${Nid}?_format=json`);
       this.articolo = await response.json();
     } catch (error) {
