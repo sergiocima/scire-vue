@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/articolo/:Nid", "destination": "/" }
+  ]
+}
