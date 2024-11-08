@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  props: ['Nid'],
   data() {
     return {
       articolo: null
@@ -20,7 +19,8 @@ export default {
   },
   async created() {
     try {
-      const response = await fetch(`${this.Nid}?_format=json`);
+      const Nid = this.$route.params.Nid;
+      const response = await fetch(`https://www.scienzainrete.it/node/${Nid}?_format=json`);
       this.articolo = await response.json();
     } catch (error) {
       console.error("Errore nel caricamento dei dati JSON:", error);

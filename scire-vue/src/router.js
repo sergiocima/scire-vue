@@ -1,9 +1,19 @@
+import { createRouter, createWebHistory } from 'vue-router';
 import ListaArticoli from './components/ListaArticoli.vue';
 import DettaglioArticolo from './components/DettaglioArticolo.vue';
 
 const routes = [
-  { path: '/', component: ListaArticoli },
-  { path: '/articolo/:id', component: DettaglioArticolo, props: true }
+  {
+    path: '/',
+    name: 'ListaArticoli',
+    component: ListaArticoli
+  },
+  {
+    path: '/articolo/:Nid',
+    name: 'DettaglioArticolo',
+    component: DettaglioArticolo,
+    props: true
+  }
 ];
 
 const router = createRouter({

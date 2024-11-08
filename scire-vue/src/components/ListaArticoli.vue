@@ -2,25 +2,23 @@
   <div>
     <h1>Articoli Scire</h1>
     <div v-if="articoli" class="masonry-grid">
-      <a
+      <router-link
         v-for="(articolo, index) in articoli"
         :key="index"
-        :href="articolo.url"
-        target="_blank"
+        :to="`/articolo/${articolo.id}`"
         class="articolo"
       >
         <img :src="articolo.field_anteprima_grande.src" :alt="articolo.field_anteprima_grande.alt">
         <h2>{{ articolo.title }}</h2>
         <p v-if="articolo['di ']" class="autore">di {{ articolo['di '] }}</p>
         <p class="data">{{ articolo.created }}</p>
-      </a>
+      </router-link>
     </div>
     <div v-else>
       <p>Caricamento in corso...</p>
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -34,10 +32,8 @@ export default {
     try {
       const response = await fetch('/api/getJson');
       const data = await response.json();
-      // Mappatura dei dati mantenendo il campo "di "
       this.articoli = data.nodes.map(node => ({
-        ...node.node,
-        url: node.node.url
+        ...node.node
       }));
     } catch (error) {
       console.error("Errore nel recupero dei dati JSON:", error);
