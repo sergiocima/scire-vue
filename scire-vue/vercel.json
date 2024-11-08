@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/articolo/:Nid", "destination": "/" }
+    { "source": "/articolo/:Nid", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
