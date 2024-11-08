@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import ListaArticoli from './components/ListaArticoli.vue';
 import DettaglioArticolo from './components/DettaglioArticolo.vue';
 
